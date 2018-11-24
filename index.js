@@ -72,5 +72,5 @@ app.post('/', async function(req, res){
       console.log('Error getting places array', err);
       res.status(200).end();
     }
-  }
+  
 });
