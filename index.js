@@ -19,7 +19,7 @@ admin.initializeApp({
 // Get the database
 const db = admin.firestore();
 
-var ref = admin.app().database().ref();
+//var ref = admin.app().database().ref();
 var refPlaces = db.collection('Places'); //ref.child('AssistantResponses');
 
 
@@ -61,10 +61,10 @@ app.post('/', async function(req, res){
 
     try {
       var snapshot = await refPlaces.get();
-      console.log('Places: ', snapshot);
       var placesArray = [];
 
       snapshot.forEach(place => {
+        console.log('Place: ', place);
         placesArray.push(place);//.data());//.task_wit);
       });
 
