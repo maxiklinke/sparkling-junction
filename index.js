@@ -5,7 +5,6 @@ const express = require('express');
 const request = require('request');
 const bodyParser = require('body-parser');
 
-const schedule = require('node-schedule');
 const app = express()
 //const port = 3000
 
