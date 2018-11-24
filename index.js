@@ -64,8 +64,8 @@ app.post('/', async function(req, res){
       var placesArray = [];
 
       snapshot.forEach(place => {
-        console.log('Place: ', place);
-        placesArray.push(place);//.data());//.task_wit);
+        console.log('Place: ', place.data());
+        placesArray.push(place.data());//.data());//.task_wit);
       });
 
       res.status(200).send(placesArray);
