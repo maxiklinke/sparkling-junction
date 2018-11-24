@@ -48,7 +48,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 
 
 /* Handling all messenges */
-app.post('/', (req, res) => {
+app.post('/', async function(req, res){
   console.log(req.body);
   /*if (req.body.object === 'page') {
     req.body.entry.forEach((entry) => {
