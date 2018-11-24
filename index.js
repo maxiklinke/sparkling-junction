@@ -1,9 +1,7 @@
-//MARK: ---------------- Initialize app and set Listeners -------------------
-
-//const admin = require('firebase-admin');
 const express = require('express');
 const request = require('request');
 const bodyParser = require('body-parser');
+const admin = require('firebase-admin');
 
 const app = express()
 //const port = 3000
@@ -22,7 +20,7 @@ admin.initializeApp({
 const db = admin.firestore();
 
 var ref = admin.app().database().ref();
-var refAssistantResponses = db.collection('Places'); //ref.child('AssistantResponses');
+var refPlaces = db.collection('Places'); //ref.child('AssistantResponses');
 
 
 //const PAGE_ACCESS_TOKEN = "EAACbuXAAkx4BAIzEvAbPIbOT6pBrPcXcDFZBIJzcoeqf5eN9WIGFwUQG0E5BzivKNnx2BNkhGotmhsFVJrt4jpkzdooVvzV7g51rEghSzMZAHZCyehG5pSqt8TXiB7QcTSgP7aEazf8kp8G4kI7Pw3IufDPmXrXMLSkkAdNPAZDZD"
@@ -52,14 +50,27 @@ const server = app.listen(process.env.PORT || 5000, () => {
 /* Handling all messenges */
 app.post('/', (req, res) => {
   console.log(req.body);
-  if (req.body.object === 'page') {
+  /*if (req.body.object === 'page') {
     req.body.entry.forEach((entry) => {
       entry.messaging.forEach((event) => {
         if (event.message && event.message.text) {
           sendMessage(event);
         }
       });
-    });
-    res.status(200).end();
+    });*/
+
+    try {
+      var snapshot = await refPlaces.get();
+      var placesArray = [];
+
+      snapshot.forEach(place => {
+        placesArray.push(place);//.data());//.task_wit);
+      });
+
+      res.status(200).send(placesArray);
+    }catch (err) {
+      console.log('Error getting places array', err);
+      res.status(200).end();
+    }
   }
 });
