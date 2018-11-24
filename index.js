@@ -61,6 +61,7 @@ app.post('/', async function(req, res){
 
     try {
       var snapshot = await refPlaces.get();
+      console.log('Places: ', snapshot);
       var placesArray = [];
 
       snapshot.forEach(place => {
@@ -72,5 +73,5 @@ app.post('/', async function(req, res){
       console.log('Error getting places array', err);
       res.status(200).end();
     }
-  
+
 });
