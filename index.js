@@ -3,7 +3,7 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const admin = require('firebase-admin');
 
-const app = express()
+const app = express();
 //const port = 3000
 
 
